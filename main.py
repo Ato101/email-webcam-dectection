@@ -1,3 +1,4 @@
+import glob
 import cv2
 import time
 
@@ -15,7 +16,7 @@ while True:
 
 
 
-    gray_frame = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+    gray_frame = cv2.cvtColor(frame , cv2.COLOR_BGR2GRAY)
 
     gray_frame_gau = cv2.GaussianBlur(gray_frame,(21,21),0)
 
@@ -39,7 +40,10 @@ while True:
         if rectangle.any():
             status =1
             cv2.imwrite(f'images/{count}',frame)
-            count = count+1                        
+            count = count+1
+            all_images=glob.glob('images/*.png')
+            index = int(len(all_images/2))
+            image_with_object = all_images[index]
     status_list.append(status)
     status_list = status_list[-2:]
 
